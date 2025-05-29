@@ -11,7 +11,7 @@ function MatchLIST() {
 
   useEffect(() => {
     axios
-      .get("https://soccer-api-backend-1.onrender.com")
+      .get("https://soccer-api-backend-1.onrender.com/matches")
       .then((res) => {
         setMatches(res.data);
         setLoading(false);
