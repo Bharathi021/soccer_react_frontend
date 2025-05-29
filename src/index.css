@@ -1,13 +1,171 @@
+/* index.css or App.css */
+
 body {
+  background-color: #f9fafb; /* light background */
+  color: #111827; /* dark text */
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Dark mode styles */
+body.dark {
+  background-color: #111827; /* dark background */
+  color: #fff; /* white text */
+}
+/* Light theme */
+.container.light {
+  background-color: #f3f4f6; /* light gray */
+  color: #111827; /* dark text */
+  min-height: 100vh;
+  padding: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, 'Helvetica Neue', sans-serif;
+}
+
+/* Dark theme */
+.container.dark {
+  background-color: #111827; /* dark background */
+  color: #fff;
+  min-height: 100vh;
+  padding: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, 'Helvetica Neue', sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.theme-toggle-btn {
+  padding: 0.5rem;
+  background-color: #e5e7eb; /* light gray */
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.05);
+}
+
+.container.dark .theme-toggle-btn {
+  background-color: #374151; /* dark gray */
+}
+
+.team-select {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db; /* light border */
+  font-size: 1rem;
+  width: 100%;
+  max-width: 300px;
+  background-color: #fff;
+  color: #111827;
+}
+
+.container.dark .team-select {
+  background-color: #374151;
+  border: 1px solid #6b7280;
+  color: #fff;
+}
+
+.loading {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.loading-text {
+  font-size: 1.25rem;
+  animation: pulse 2s infinite;
+  color: #6b7280;
+}
+
+.container.dark .loading-text {
+  color: #9ca3af;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.no-matches {
+  color: #6b7280;
+}
+
+.container.dark .no-matches {
+  color: #9ca3af;
+}
+
+.match-card {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+  margin-bottom: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.container.dark .match-card {
+  background-color: #1f2937;
+  box-shadow: 0 1px 3px rgb(255 255 255 / 0.1);
+}
+
+.match-card:hover {
+  background-color: #bfdbfe; /* light blue */
+}
+
+.container.dark .match-card:hover {
+  background-color: #374151;
+}
+
+.match-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.teams {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.vs {
+  color: #9ca3af;
+  margin: 0 0.5rem;
+}
+
+.container.dark .vs {
+  color: #6b7280;
+}
+
+.match-time {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.container.dark .match-time {
+  color: #d1d5db;
+}
+
+.live-indicator {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #dc2626; /* red */
+  animation: pulse 2s infinite;
 }
