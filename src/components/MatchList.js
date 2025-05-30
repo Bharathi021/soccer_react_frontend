@@ -36,7 +36,7 @@ function MatchLIST() {
     const matchTime = new Date(time);
     const now = new Date();
     const diff = Math.abs(now - matchTime);
-    return diff < 60 * 60 * 1000; // 1 hour
+    return diff < 60 * 60 * 1000; // 1 hour threshold
   };
 
   const filteredMatches =
@@ -90,38 +90,41 @@ function MatchLIST() {
               No matches found.
             </motion.p>
           ) : (
-            filteredMatches.map((match, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                layout
-                className="match-card"
-              >
-                <div className="match-info">
-                  <div>
-                    <div className="teams">
-                      {match.home} <span className="vs">vs</span> {match.away}
+            filteredMatches.map((match, idx) => {
+              const matchDate = new Date(match.time);
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  layout
+                  className="match-card"
+                >
+                  <div className="match-info">
+                    <div>
+                      <div className="teams">
+                        {match.home} <span className="vs">vs</span> {match.away}
+                      </div>
+                      <div className="match-time">
+                        <CalendarDays size={16} />
+                        <span>{matchDate.toLocaleDateString()}</span>
+                        <Clock size={16} />
+                        <span>
+                          {matchDate.toLocaleTimeString([], {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })}
+                        </span>
+                      </div>
                     </div>
-                    <div className="match-time">
-                      <CalendarDays size={16} />
-                      <span>{new Date(match.time).toLocaleDateString()}</span>
-                      <Clock size={16} />
-                      <span>
-                        {new Date(match.time).toLocaleTimeString([], {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
-                      </span>
-                    </div>
+                    {isLive(match.time) && (
+                      <div className="live-indicator">🔴 Live Now</div>
+                    )}
                   </div>
-                  {isLive(match.time) && (
-                    <div className="live-indicator">🔴 Live Now</div>
-                  )}
-                </div>
-              </motion.div>
-            ))
+                </motion.div>
+              );
+            })
           )}
         </AnimatePresence>
       )}
